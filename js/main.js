@@ -1,29 +1,30 @@
 ;$(function(){
 	'use strict';
-	var sidebar = $('#sidebar'),//选择侧栏
-		mask = $('.mask'),
-		backButton = $('.back-to-top'),
-		sidebar_trigger = $('#sidebar_trigger');
+	var sidebar = $('#sidebar');//选择侧栏
+	var	mask = $('.mask');
+	var	backButton = $('.back-to-top');//选择back-to-top按钮
+	var	sidebar_trigger = $('#sidebar_trigger');//选择sidebar_trigger
 		function showSideBar(){
 //			console.log('clicked');用来测试点击事件
 			mask.fadeIn();//在mask中加入一个display:block,使画面变暗
-			sidebar.css('right',0);
-		}
+			sidebar.css('right',0);//使用css方法传right=0
+		}//负责侧栏滑出
 		function hideSideBar(){
-			mask.fadeOut();
-			sidebar.css('right',-sidebar.width())
-		}
-		sidebar_trigger.on('click',showSideBar)
-		mask.on('click',hideSideBar)
+			mask.fadeOut();//放弃对mask的改变，恢复原样
+			sidebar.css('right',-sidebar.width())//sidebar有多宽，就收多少
+		}//负责侧栏滑回去
+		sidebar_trigger.on('click',showSideBar)//只要sidebar_trigger被点击了，就执行showSideBar函数
+		mask.on('click',hideSideBar)//点击后，执行hideSideBar函数
 		backButton.on('click',function(){
 //			console.log('back back');测试button是否工作
-			$('html,doby').animate({
-				scrollTop: 0
-			},800)
+			$('html,body').animate({//选中html与body,向animate中传入一个对象
+				scrollTop: 0//滚动到0
+			},800)//定义滚动时间800ms
 		})
-		$(window).on('scroll',function(){
-			if($(window).scrollTop() > $(window).height())
-			backButton.fadeIn();//检测scrollTop高度是否等于Window，如果等于就隐藏button
+//		过河拆桥
+		$(window).on('scroll',function(){//检测鼠标是否开始滚动
+			if($(window).scrollTop() > $(window).height())//滚动时判断scrollTop是否大于window的高度
+			backButton.fadeIn();//检测scrollTop高度是否大于Window的高度，如果大于就隐藏button
 			else
 			backButton.fadeOut();
 		})

@@ -206,5 +206,12 @@ footer{
 article{
 	line-height: 2;
 	padding: 10px 0;
+	background: #fff;
 }
 
+textarea{
+	font-size: 100%;
+	letter-spacing: inherit;
+	width: 80%;
+	height: 750px;
+}
